@@ -1,0 +1,78 @@
+<h3>Please enter details to book your travel</h3>
+<form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="travellerName">Traveller Name</label>
+    <input type="text" formControlName="travellerName" class="form-control" id="travellerName" required>
+    <div *ngIf="bookingForm.get('travellerName')?.invalid && bookingForm.get('travellerName')?.touched"
+      class="text-danger">
+      Traveller name is required.
+    </div>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="travellerEmail">Traveller Email</label>
+    <input type="email" formControlName="travellerEmail" class="form-control" id="travellerEmail" required>
+    <div *ngIf="bookingForm.get('travellerName')?.touched">
+      <div *ngIf="bookingForm.get('travellerEmail')?.errors?.['required']" class="invalid-feedback d-block">
+        Email is required.
+      </div>
+      <div *ngIf="bookingForm.get('travellerEmail')?.errors?.['email']" class="invalid-feedback d-block">
+        Please enter a valid email.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="channel">Channel</label>
+    <select formControlName="channel" class="form-control" id="channel" required>
+      <option value="">Select channel...</option>
+      <option value="partner">Partner</option>
+      <option value="agent">Agent</option>
+      <option value="direct customer">Direct Customer</option>
+    </select>
+    <div *ngIf="bookingForm.get('channel')?.invalid && bookingForm.get('channel')?.touched"
+      class="text-danger invalid-feedback d-block">
+      Channel is required.
+    </div>
+  </div>
+
+  <hr class="mb-3">
+  <div class="row">
+    <div class="form-group custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input form-check-input" formControlName="meetAndGreet"
+        id="meetAndGreet">
+      <label for="meetAndGreet" class="custom-control-label">Meet & Greet Requested?</label>
+      <div *ngIf="bookingForm.get('meetAndGreet')?.invalid && bookingForm.get('meetAndGreet')?.touched"
+        class="text-danger invalid-feedback">
+        Meet & Greet selection is required.
+      </div>
+    </div>
+  </div>
+  <hr class="mb-4">
+
+  <div class="form-group mb-3">
+    <label for="travelDateTime">Travel Date & Time</label>
+    <input type="datetime-local" formControlName="travelDateTime" class="form-control" id="travelDateTime" required>
+    <div *ngIf="bookingForm.get('travelDateTime')?.touched">
+      <div *ngIf="bookingForm.get('travelDateTime')?.errors?.['required']" class="invalid-feedback d-block">
+        Travel date and time is required.
+      </div>
+      <div *ngIf="bookingForm.get('travelDateTime')?.errors?.['date']" class="invalid-feedback d-block">
+        Please enter a valid travel date and time.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="bookingPrice">Booking Price</label>
+    <input type="number" formControlName="bookingPrice" class="form-control" id="bookingPrice" required>
+    <div *ngIf="bookingForm.get('bookingPrice')?.invalid && bookingForm.get('bookingPrice')?.touched"
+      class="invalid-feedback d-block">
+      Booking price is required.
+    </div>
+  </div>
+
+  <hr class="mb-4">
+  <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!bookingForm.valid"
+    class="btn btn-primary">Submit</button>
+</form>

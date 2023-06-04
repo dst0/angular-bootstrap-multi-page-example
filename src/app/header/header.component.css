@@ -1,0 +1,30 @@
+nav ul li a.active-link {
+  color: #000044;
+  border-color: #777777;
+  background-color: #efefef;
+}
+
+nav ul li a {
+  display: block;
+  width: max-content;
+  margin-right: 8px;
+
+  font-weight: bold;
+
+  border: #ececec 2px solid;
+  border-radius: 4px;
+}
+
+.travel-header {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin-bottom: 2rem;
+
+  border: #ececec 1px solid;
+  border-radius: 0 0 8px 8px;
+  background-color: #ececec;
+}

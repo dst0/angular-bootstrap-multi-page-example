@@ -1,0 +1,50 @@
+<div class="row">
+  <h3>Available Travel Options</h3>
+  <div class="col-md-12 order-md-1">
+
+    <div *ngIf="isLoading">
+      <p>Loading...</p>
+    </div>
+
+    <div *ngIf="error?.error">
+      <p>{{ error?.message }}</p>
+    </div>
+
+    <table *ngIf="priceStatistics" class="table table-striped">
+      <tbody>
+        <tr>
+          <td class="col-md-3">Total Listings:</td>
+          <td>{{ listings.length }}</td>
+        <tr>
+          <td class="col-md-3">Minimum Price:</td>
+          <td>${{ priceStatistics.minimum }}</td>
+        <tr>
+          <td class="col-md-3">Maximum Price:</td>
+          <td>${{ priceStatistics.maximum }}</td>
+        <tr>
+          <td class="col-md-3">Average Price:</td>
+          <td>${{ priceStatistics.average }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <table class="table table-bordered table-striped" *ngIf="!isLoading && !error?.error">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Vehicle Type</th>
+          <th scope="col">Price per Passenger ($)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let listing of listings">
+          <td>{{ listing.name }}</td>
+          <td>{{ listing.vehicleType.name }}</td>
+          <td>{{ listing.pricePerPassenger }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
