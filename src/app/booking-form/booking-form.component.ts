@@ -13,7 +13,7 @@ export class BookingFormComponent {
     channel: new FormControl('', Validators.required),
     meetAndGreet: new FormControl(false),
     travelDateTime: new FormControl('', Validators.required),
-    bookingPrice: new FormControl('', [Validators.required, Validators.min(0.001)]),
+    bookingPrice: new FormControl('', [Validators.required, Validators.min(0.01)]),
   });
 
   onSubmit() {

@@ -66,9 +66,13 @@
   <div class="form-group mb-3">
     <label for="bookingPrice">Booking Price</label>
     <input type="number" formControlName="bookingPrice" class="form-control" id="bookingPrice" required>
-    <div *ngIf="bookingForm.get('bookingPrice')?.invalid && bookingForm.get('bookingPrice')?.touched"
-      class="invalid-feedback d-block">
-      Booking price is required.
+    <div *ngIf="bookingForm.get('bookingPrice')?.touched">
+      <div *ngIf="bookingForm.get('bookingPrice')?.errors?.['required']" class="invalid-feedback d-block">
+        Booking price is required.
+      </div>
+      <div *ngIf="bookingForm.get('bookingPrice')?.errors?.['min']" class="invalid-feedback d-block">
+        Please enter a non-negative, non-zero booking price.
+      </div>
     </div>
   </div>
 

@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BookingFormComponent } from './booking-form/booking-form.component';
 import { TravelOptionsComponent } from './travel-options/travel-options.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TravelOptionsService } from './travel-options.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+
+  providers: [TravelOptionsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
