@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import type { PriceStatistics, TravelOption } from './travel-options/models';
-
+import { Observable, catchError, map, of } from 'rxjs';
+import { PriceStatistics, TravelOption } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +10,7 @@ export class TravelOptionsService {
 
   constructor(private http: HttpClient) { }
 
-  loadTravelOptions(): Observable<{ listings: TravelOption[], priceStatistics: PriceStatistics }> {
+  loadTravelOptions(): Observable<{ listings: TravelOption[], priceStatistics: PriceStatistics | null }> {
     return this.http.get<any>('https://localhost:3001/').pipe(
       catchError((err) => {
         // Handle error
@@ -22,13 +20,9 @@ export class TravelOptionsService {
     );
   }
 
-  processTravelOptions(data: any): { listings: TravelOption[], priceStatistics: PriceStatistics } {
+  processTravelOptions(data: any): { listings: TravelOption[], priceStatistics: PriceStatistics | null } {
     const listings: TravelOption[] = data.listings;
-    const priceStatistics: PriceStatistics = {
-      minimum: 0,
-      maximum: 0,
-      average: 0,
-    };
+    let priceStatistics: PriceStatistics | null = null;
 
     if (listings.length > 0) {
       let minimum = listings[0].pricePerPassenger;
@@ -44,9 +38,7 @@ export class TravelOptionsService {
         totalPrice += pricePerPassenger;
       }
 
-      priceStatistics.minimum = minimum;
-      priceStatistics.maximum = maximum;
-      priceStatistics.average = +(totalPrice / listings.length).toFixed(2);
+      priceStatistics = { minimum, maximum, average: +(totalPrice / listings.length).toFixed(2) };
     }
 
     return { listings, priceStatistics };

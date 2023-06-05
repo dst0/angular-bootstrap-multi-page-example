@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TravelOptionsService } from '../travel-options.service';
 import type { PriceStatistics, TravelOption, TravelOptionsError } from './models';
+import { TravelOptionsService } from './travel-options.service';
 
 @Component({
   selector: 'app-travel-options',
@@ -22,7 +22,7 @@ export class TravelOptionsComponent implements OnInit {
         this.listings = listings;
         this.priceStatistics = priceStatistics;
       },
-      error: (error) => {
+      error: (error: TravelOptionsError) => {
         this.error = error;
       },
       complete: () => {

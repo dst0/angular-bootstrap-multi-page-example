@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { TravelOptionsService } from './travel-options.service';
 
-describe('TravelOptionsService', () => {
+describe('TravelOptions2Service', () => {
   let service: TravelOptionsService;
 
   beforeEach(() => {
