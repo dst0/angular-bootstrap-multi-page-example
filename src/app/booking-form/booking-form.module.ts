@@ -13,6 +13,5 @@ import { BookingFormComponent } from './booking-form.component';
     ReactiveFormsModule,
     BookingFormRoutingModule,
   ],
-  // bootstrap: [BookingFormComponent],
 })
 export class BookingFormModule { }

@@ -15,6 +15,5 @@ import { TravelOptionsService } from './travel-options.service';
     TravelOptionsRoutingModule
   ],
   providers: [TravelOptionsService],
-  // bootstrap: [TravelOptionsComponent],
 })
 export class TravelOptionsModule { }
